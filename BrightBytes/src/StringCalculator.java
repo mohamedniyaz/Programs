@@ -1,7 +1,7 @@
 
 public class StringCalculator {	
 	
-	private final String delimiter = "[,\n]";
+	private final String delimiter = "[\n,]";
 	
 	public int calculate(String input) throws Exception{		
 		String[] numbers = getSplit(input);		
