@@ -78,4 +78,28 @@ public class StringCalcTest {
         assertEquals(StringCalc.calculate(dotSeparatedNumbers), 17 + 18);
     }
     
+    @Test 
+    public void exceptionIsThrownWhenNegativeNumberIsFound() throws Exception {
+        String numbersWithNegativeNumber = "5,4,-2";     
+        String exceptionMessgae = "Negative numbers are [ -2 ]";
+        assertInputStringCausesExceptionToBeThrownWithMessage(numbersWithNegativeNumber,exceptionMessgae);
+    }
+    
+    @Test
+    public void exceptionIsThrownWhenMultipleNegativesAreFound() throws Exception {
+        String numbersWithNegativeNumber = "5,-4,-2";
+        String exceptionMessgae = "Negative numbers are [ -4 -2 ]";
+        assertInputStringCausesExceptionToBeThrownWithMessage(numbersWithNegativeNumber,exceptionMessgae);
+    }
+    
+    
+    private void assertInputStringCausesExceptionToBeThrownWithMessage(String inputString, String expectedErrorMsg) {
+        try {
+        	StringCalc.calculate(inputString);           
+        } catch (Exception e) {
+        	assertEquals(expectedErrorMsg,e.getMessage());
+        }
+
+    }
+    
 }

@@ -1,5 +1,6 @@
 
-public class StringCalculator {	
+public class StringCalculator {
+	
 	
 	private final String delimiter = "[\n\\s;.,:'!?()//]";
 	
@@ -19,6 +20,25 @@ public class StringCalculator {
 		return input.isEmpty();	
 	}
 	
+	public String isNegative(String[] numbers){
+		String negNumbers = "";
+		for(String current : numbers){
+			if(!isEmpty(current)){
+				if(getInt(current) < 0)
+					negNumbers += current +" ";
+			}
+		}
+		
+		return negNumbers;
+	}
+	
+	public void checkException(String[] numbers) throws Exception{
+		String check = isNegative(numbers);
+		
+		if(!isEmpty(check))			
+			throw new Exception("Negative numbers are [ "+check+"]");		
+	}
+	
 	public String[] getSplit(String input){		
 		String[] numbers = input.split(delimiter);
 		return numbers;
@@ -29,6 +49,7 @@ public class StringCalculator {
 	}
 	
 	public int getSum(String[] numbers) throws Exception{	
+		checkException(numbers);
 		int sum = 0;				
 		for(String current:numbers){
 			
