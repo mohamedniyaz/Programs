@@ -53,4 +53,29 @@ public class StringCalcTest {
         assertEquals(StringCalc.calculate(numbersSeparatedWithNewLinesAndCommas), sumOfNumbers);
     }
     
+    @Test
+    public void usesCustomSeparatorDefinedInFirstLineOfInput() throws Exception {
+        String numbersWithCustomSeparator = "//;\n5;6;8";
+        int sumOfNumbers = 5 + 6 + 8;
+        assertEquals(StringCalc.calculate(numbersWithCustomSeparator), sumOfNumbers);
+    }
+    
+    @Test
+    public void givenCustomSeparatorButNoNumbersReturnsZero() throws Exception {
+        String customSeparatorWithNoNumbers = "//;\n";
+        assertEquals(StringCalc.calculate(customSeparatorWithNoNumbers), 0);
+    }
+    
+    @Test
+    public void givenCustomSeparatorButJustOneNumberReturnsThatNumberValue() throws Exception {
+        String customSeparatorWithNoNumbers = "//;\n9";
+        assertEquals(StringCalc.calculate(customSeparatorWithNoNumbers), 9);
+    }
+    
+    @Test
+    public void regexSpecialCharactersCanBeSeparatorsToo() throws Exception {
+        String dotSeparatedNumbers = "//.\n17.18";
+        assertEquals(StringCalc.calculate(dotSeparatedNumbers), 17 + 18);
+    }
+    
 }
